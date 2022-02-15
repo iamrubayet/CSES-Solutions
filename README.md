@@ -3,7 +3,7 @@
 
 # CSES Solutions
 
-Over 270 accepted solutions to the [CSES Problem Set](https://cses.fi/problemset/), written in C++ by me. 
+All 300 accepted solutions to the [CSES Problem Set](https://cses.fi/problemset/), written in C++ by me. 
 | Problem Type          | Number Solved |
 |-----------------------|:-------------:|
 | Introductory Problems |     19/19     |
