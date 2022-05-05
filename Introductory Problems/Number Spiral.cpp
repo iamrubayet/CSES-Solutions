@@ -1,26 +1,58 @@
+#include <iostream>
 #include <bits/stdc++.h>
+using ll = long long;
+using ld = long double;
+
 
 using namespace std;
-typedef long long ll;
 
-int T;
-ll X, Y;
 
-ll solve(ll x, ll y){
-    ll l = max(x, y)-1;
-    if(l&1){
-        if(x < y)   return l*l + x;
-        else        return l*l+2*l-y+2;
-    } else {
-        if(x < y)   return l*l+2*l-x+2;
-        else        return l*l + y;
+int main()
+{
+    int t;
+    cin >> t;
+    while(t--){
+        ll x = 0;
+        ll y =0;
+        ll result = 0;
+        cin >> y >> x;
+
+        if(x==y){
+            result = x*x;
+            cout << result -(x-1) <<endl;
+        }
+
+        else if(y>x)
+        {
+            if(y%2==0)
+            {
+                result = y*y;
+                cout << result-(x-1) <<endl;
+
+            }
+            else
+            {
+                result = (y-1)*(y-1);
+                cout << result+x<<endl;
+            }
+        }
+
+        else
+        {
+            if(x%2==0)
+            {
+                result = (x-1)*(x-1);
+                cout << result+y<<endl;
+
+
+            }
+            else
+            {
+                result = x*x;
+                cout << result-(y-1) <<endl;
+
+            }
+        }
     }
-}
-
-int main(){
-    scanf("%d", &T);
-    for(int t = 0; t < T; t++){
-        scanf("%lld %lld", &X, &Y);
-        printf("%lld\n", solve(X, Y));
-    }
+    return 0;
 }

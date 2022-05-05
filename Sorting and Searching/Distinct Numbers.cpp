@@ -1,15 +1,26 @@
+#include <iostream>
 #include <bits/stdc++.h>
+using ll = long long;
+using ld = long double;
+
 
 using namespace std;
 
-int N, x;
-set<int> S;
 
-int main(){
-    scanf("%d", &N);
-    for(int i = 0; i < N; i++){
-        scanf("%d", &x);
-        S.insert(x);
+int main()
+{
+    ll n;
+    cin >> n;
+    set<int> s;
+    for(int i=0;i<n;i++){
+        ll x=0;
+        cin >> x;
+        s.insert(x);
+
     }
-    printf("%d\n", (int) S.size());
+
+    cout << s.size()<<endl;
+    return 0;
 }
+
+
