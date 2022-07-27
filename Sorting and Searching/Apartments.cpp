@@ -1,27 +1,52 @@
+#include <iostream>
 #include <bits/stdc++.h>
+using ll = long long;
+using ld = long double;
+
 
 using namespace std;
-const int maxN = 2e5+1;
 
-int N, M, K, a[maxN], b[maxN];
 
-int main(){
-    scanf("%d %d %d", &N, &M, &K);
-    for(int i = 0; i < N; i++)  scanf("%d", &a[i]);
-    for(int i = 0; i < M; i++)  scanf("%d", &b[i]);
+int main()
+{
+    int n,m,k;
 
-    sort(a, a+N);
-    sort(b, b+M);
+    cin >> n >> m >> k;
 
-    int cnt = 0;
-    int aptr = 0, bptr = 0;
-    while(aptr < N){
-        while(bptr < M && b[bptr] < a[aptr]-K)  bptr++;
-        if(bptr < M && a[aptr]-K <= b[bptr] && b[bptr] <= a[aptr]+K){
-            cnt++;
-            aptr++;
-            bptr++;
-        } else aptr++;
+    vector<int> a(n);
+    vector<int> b(m);
+
+    for(int i=0;i<n;i++){
+        cin >> a[i];
     }
-    printf("%d\n", cnt);
+    for(int i=0;i<m;i++){
+        cin >> b[i];
+    }
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+
+    int ans =0;
+    int i=0;
+    int j=0;
+
+    while(i<n && j<m)
+    {
+        if(abs(a[i]-b[j])<=k)
+        {
+            ans++;
+            i++;
+            j++;
+        }
+        else if(a[i]<b[j]){
+            i++;
+        }
+        else
+        {
+            j++;
+        }
+
+    }
+    cout<<ans<<endl;
+
+    return 0;
 }
