@@ -1,21 +1,36 @@
+#include <iostream>
 #include <bits/stdc++.h>
+using ll = long long;
+using ld = long double;
+
 
 using namespace std;
-const int maxN = 2e5;
 
-int N, X, l, ans, p[maxN];
 
-int main(){
-    scanf("%d %d", &N, &X);
-    for(int i = 0; i < N; i++)
-        scanf("%d", &p[i]);
-    sort(p, p+N);
-
-    l = 0;
-    for(int r = N-1; r >= l; r--){
-        if(p[l] + p[r] <= X)
-            l++;
-        ans++;
+int main()
+{
+    ll n,x;
+    cin >> n >> x;
+    vector<ll> v(n);
+    for(int i=0;i<n;i++){
+        cin >> v[i];
     }
-    printf("%d\n", ans);
+    sort(v.begin(),v.end());
+    int cnt = n;
+    int i,j;
+    i=0,j=n-1;
+    while(i<j)
+    {
+        if(v[i]+v[j]<=x){
+            cnt--;
+            i++;
+            j--;
+        }
+        else{
+            j--;
+        }
+
+    }
+    cout << cnt <<endl;
+    return 0;
 }
