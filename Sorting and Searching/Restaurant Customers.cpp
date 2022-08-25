@@ -1,25 +1,35 @@
+#include <iostream>
 #include <bits/stdc++.h>
+using ll = long long;
+using ld = long double;
+
 
 using namespace std;
-const int maxN = 4e5;
 
-int N, a, b, cur, ans;
-struct event {int time, type;} events[maxN];
 
-int main(){
-    scanf("%d", &N);
-    for(int i = 0; i < N; i++){
-        scanf("%d %d", &a, &b);
-        events[2*i] = {a, 1};
-        events[2*i+1] = {b, -1};
+int main()
+{
+    int n;
+    cin >> n;
+    vector<pair<int,int>> events(n);
+    for(int i=0;i<n;i++)
+    {
+        int starttime,endtime;
+        cin >> starttime >> endtime;
+        events.push_back({starttime,1});
+        events.push_back({endtime,-1});
+
     }
-    sort(events, events+2*N, [](event A, event B){
-        return A.time == B.time ? A.type < B.type : A.time < B.time;
-    });
+    int actualcustomers = 0;
+    int maxcustomers = 0;
+    sort(events.begin(),events.end());
+    for(int i=0;i<events.size();i++)
+    {
+        actualcustomers += events[i].second;
+        maxcustomers= max(maxcustomers,actualcustomers);
 
-    for(int i = 0; i < 2*N; i++){
-        cur += events[i].type;
-        ans = max(ans, cur);
     }
-    printf("%d\n", ans);
+    cout << maxcustomers<<endl;
+
+    return 0;
 }
