@@ -1,23 +1,43 @@
+#include <iostream>
 #include <bits/stdc++.h>
+using ll = long long;
+using ld = long double;
+
 
 using namespace std;
 
-int N, M, h, t;
-multiset<int> prices;
 
-int main(){
-    scanf("%d %d", &N, &M);
-    for(int i = 0; i < N; i++){
-        scanf("%d", &h);
-        prices.insert(-h);
+int main()
+{
+    int n,m;
+    cin >> n >>m;
+    vector<int> tickets(n);
+    vector<int> customers(m);
+    set<pair<int,int>> sortedtickets;
+    for(int i=0;i<n;i++)
+    {
+        cin >> tickets[i];
+        sortedtickets.insert({tickets[i],i});
     }
-    for(int i = 0; i < M; i++){
-        scanf("%d", &t);
-        if(prices.lower_bound(-t) == prices.end())
-            printf("-1\n");
-        else {
-            printf("%d\n", -(*prices.lower_bound(-t)));
-            prices.erase(prices.lower_bound(-t));
+    for(int i=0;i<m;i++)
+    {
+        cin >> customers[i];
+    }
+    for(int i=0;i<m;i++)
+    {
+        auto match = sortedtickets.lower_bound({customers[i]+1,0});
+        if(match==sortedtickets.begin())
+        {
+            cout <<-1<<endl;
         }
+       else
+       {
+           match--;
+           cout<<(*match).first <<endl;
+           sortedtickets.erase(match);
+
+       }
     }
+
+    return 0;
 }
