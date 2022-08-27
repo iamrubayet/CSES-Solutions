@@ -1,20 +1,30 @@
+#include <iostream>
 #include <bits/stdc++.h>
+using ll = long long;
+using ld = long double;
+
 
 using namespace std;
-typedef long long ll;
-const int maxN = 2e5;
 
-int N, p[maxN];
-ll median, sum;
 
-int main(){
-    scanf("%d", &N);
-    for(int i = 0; i < N; i++)
-        scanf("%d", &p[i]);
-    sort(p, p+N);
+int main()
+{
+    int n;
+    cin >> n;
+    vector<ll> v(n);
+    for(int i=0;i<n;i++)
+    {
+        cin >> v[i];
+    }
+    sort(v.begin(),v.end());
+    ll mid = n/2;
+    ll midvalue = v[mid];
+    ll mini = 0;
+    for(int i=0;i<n;i++)
+    {
+            mini  += abs(midvalue-v[i]);
 
-    median = p[(N-1)/2];
-    for(int i = 0; i < N; i++)
-        sum += abs(p[i]-median);
-    printf("%lld\n", sum);
+    }
+    cout << mini <<endl;
+    return 0;
 }
