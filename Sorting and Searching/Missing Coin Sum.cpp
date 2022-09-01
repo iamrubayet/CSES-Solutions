@@ -1,20 +1,42 @@
+#include <iostream>
 #include <bits/stdc++.h>
+using ll = long long;
+using ld = long double;
+
 
 using namespace std;
-typedef long long ll;
-const int maxN = 2e5;
 
-int N, x[maxN];
-ll res;
 
-int main(){
-    scanf("%d", &N);
-    for(int i = 0; i < N; i++)
-        scanf("%d", &x[i]);
-    sort(x, x+N);
+int main()
+{
+    int n;
+    cin >> n;
+    vector<ll> coins(n);
+    for(int i=0;i<n;i++){
+        cin >> coins[i];
+    }
+    sort(coins.begin(),coins.end());
 
-    res = 1;
-    for(int i = 0; i < N && x[i] <= res; i++)
-        res += x[i];
-    printf("%lld\n", res);
+    ll ans = 1;
+
+    for(int i=0;i<n;i++)
+    {
+        if(ans < coins[i])
+        {
+            break;
+        }
+        else{
+            ans += coins[i];
+        }
+    }
+
+    cout << ans <<endl;
+
+
+
+
+
+
+    return 0;
 }
+
